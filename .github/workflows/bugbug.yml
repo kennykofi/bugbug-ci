@@ -1,0 +1,22 @@
+name: BugBug E2E
+
+on:
+  workflow_dispatch:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      max-parallel: 3
+      matrix:
+        suite:
+          - name: Workspace & Team Management
+            id: '7320f397-00c3-4ab8-9981-a04fd4991eb1'
+    name: ${{ matrix.suite.name }}
+    steps:
+      - name: Run suite
+        uses: bugbug-io/bugbug-github-action@v1.2.2
+        with:
+          apiToken: ${{ secrets.BUGBUG_API_TOKEN }}
+          suiteId: ${{ matrix.suite.id }}
