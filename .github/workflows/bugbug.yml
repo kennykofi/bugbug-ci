@@ -2,6 +2,8 @@ name: BugBug E2E
 
 on:
   workflow_dispatch:
+  schedule:
+    - cron: '0 4 * * *'
 
 jobs:
   e2e:
